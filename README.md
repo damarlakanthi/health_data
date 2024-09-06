@@ -21,3 +21,8 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
+
+### Application walkthrough Video
+
+https://drive.google.com/file/d/1Q-KBQDXUj3a6uFlNVVf3rF7Q8552iw2G/view?usp=sharing
+
