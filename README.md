@@ -21,6 +21,11 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
+### Note:
+
+For data visulization You need to click on every pointer then only it will update the visulization or it will show previous data
+
+
 
 ### Application walkthrough Video
 
