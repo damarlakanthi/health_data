@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Layout, Menu, Card, Row, Col, Select, Typography, Drawer } from "antd";
-import { DashboardOutlined, FilterOutlined } from "@ant-design/icons";
+import {
+  
+  DashboardOutlined,
+  FilterOutlined,
+ 
+} from "@ant-design/icons";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "./App.css";
+import Chart from "chart.js/auto";
 import Graphs from "./ReusableComponents/Graphs";
 import MapView from "./ReusableComponents/MapView";
 import Filters from "./Filters";
@@ -37,7 +43,7 @@ function App() {
     fetchUniqueValues("Topic", setAvailableTopics);
     fetchUniqueValues("break_out", setAvailableBreakOut);
   }, []);
-
+  
   const fetchUniqueValues = (field, setterFunction) => {
     axios
       .get(`http://localhost:3081/getUniqueValues/${field}`)
@@ -63,7 +69,7 @@ function App() {
         setData(fetchedData);
         setTotalCases(calculateTotalCases(fetchedData));
         setHeatmapData(calculateHeatmapData(fetchedData));
-        console.log("heatdataaa", heatmapData);
+        console.log("heatdataaa",heatmapData)
       })
       .catch((error) => {
         console.error("There was an error fetching the data!", error);
@@ -71,10 +77,7 @@ function App() {
   }, [yearStart, locationAbbr, topic, availableBreakOut]);
 
   const calculateTotalCases = (data) => {
-    return data.reduce(
-      (sum, item) => sum + (parseFloat(item.data_value) || 0),
-      0
-    );
+    return data.reduce((sum, item) => sum + (parseFloat(item.data_value) || 0), 0);
   };
 
   const calculateLocationCases = (location) => {
@@ -87,9 +90,9 @@ function App() {
     return data
       .filter((item) => item.geolocation && item.geolocation.coordinates)
       .map((item) => [
-        item.geolocation.coordinates[1],
-        item.geolocation.coordinates[0],
-        parseFloat(item.data_value) || 0,
+        item.geolocation.coordinates[1],  
+        item.geolocation.coordinates[0], 
+        parseFloat(item.data_value) || 0  
       ]);
   };
 
@@ -125,12 +128,7 @@ function App() {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={setCollapsed}
-        theme="light"
-      >
+      <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed} theme="light">
         <div className="logo" />
         <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
           <Menu.Item key="1" icon={<DashboardOutlined />}>
@@ -144,20 +142,13 @@ function App() {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header
-          style={{ padding: 0, background: "#fff" }}
-          className="site-layout-background"
-        >
+        <Header style={{ padding: 0, background: "#fff" }} className="site-layout-background">
           <Row justify="space-between" align="middle">
             <Col>
-              <Title level={2} style={{ margin: "16px 0 0 24px" }}>
-                CDC Health Data Visualization
-              </Title>
+              <Title level={2} style={{ margin: "16px 0 0 24px" }}>CDC Health Data Visualization</Title>
             </Col>
             <Col>
-              <Text strong style={{ marginRight: "24px" }}>
-                Total Cases: {totalCases.toLocaleString()}
-              </Text>
+              <Text strong style={{ marginRight: "24px" }}>Total Cases: {totalCases.toLocaleString()}</Text>
             </Col>
           </Row>
         </Header>
@@ -165,11 +156,7 @@ function App() {
           <div style={{ padding: 24, minHeight: 360 }}>
             <Row gutter={[16, 16]}>
               <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                <Card
-                  title="Map View"
-                  bordered={false}
-                  style={{ height: "600px" }}
-                >
+                <Card title="Map View" bordered={false} style={{ height: "600px" }}>
                   <MapView
                     data={data}
                     setSelectedLocation={setSelectedLocation}
@@ -188,28 +175,18 @@ function App() {
             {selectedLocation && (
               <Row gutter={[16, 16]} style={{ marginTop: "16px" }}>
                 <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-                  <Card
-                    title={`Cases for ${selectedLocation}`}
-                    bordered={false}
-                  >
-                    <Title level={3}>
-                      {calculateLocationCases(
-                        selectedLocation
-                      ).toLocaleString()}
-                    </Title>
+                  <Card title={`Cases for ${selectedLocation}`} bordered={false}>
+                    <Title level={3}>{calculateLocationCases(selectedLocation).toLocaleString()}</Title>
                   </Card>
                 </Col>
                 <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                   <Card title="Topic Counts" bordered={false}>
                     <ul style={{ padding: 0, listStyle: "none" }}>
-                      {Object.entries(topicCounts).map(
-                        ([topic, count], index) => (
-                          <li key={index}>
-                            <Text strong>{topic}:</Text>{" "}
-                            {count.toLocaleString()}
-                          </li>
-                        )
-                      )}
+                      {Object.entries(topicCounts).map(([topic, count], index) => (
+                        <li key={index}>
+                          <Text strong>{topic}:</Text> {count.toLocaleString()}
+                        </li>
+                      ))}
                     </ul>
                   </Card>
                 </Col>
@@ -221,11 +198,7 @@ function App() {
                   title="Data Visualization"
                   bordered={false}
                   extra={
-                    <Select
-                      defaultValue="pie"
-                      style={{ width: 120 }}
-                      onChange={handleChartViewOption}
-                    >
+                    <Select defaultValue="pie" style={{ width: 120 }} onChange={handleChartViewOption}>
                       <Select.Option value="pie">Pie</Select.Option>
                       <Select.Option value="doughnut">Doughnut</Select.Option>
                       <Select.Option value="line">Line</Select.Option>
@@ -242,9 +215,7 @@ function App() {
             </Row>
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          CDC Health Data Visualization ©2024 Created by Kanthi Kiran Damarla
-        </Footer>
+        <Footer style={{ textAlign: "center" }}>CDC Health Data Visualization ©2024 Created by Kanthi Kiran Damarla</Footer>
       </Layout>
       <Drawer
         title="Filters"
