@@ -82,7 +82,7 @@ const MapView = ({
         <MapContainer
           center={[38.0902, -95.7129]}
           zoom={4}
-          style={{ height: "60vh", width: "100%" }}
+          style={{ height: "50vh", width: "100%" }}
         >
           <LayersControl position="topright">
             <BaseLayer checked name="OpenStreetMap">
