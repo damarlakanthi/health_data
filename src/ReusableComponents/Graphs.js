@@ -5,7 +5,7 @@ import "../App.css";
 export const Graphs = ({ chartData, chartType }) => {
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: false, // Ensure the chart is responsive
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top",
