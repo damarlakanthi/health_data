@@ -145,7 +145,7 @@ function App() {
         <Header style={{ padding: 0, background: "#fff" }} className="site-layout-background">
           <Row justify="space-between" align="middle">
             <Col>
-              <Title level={2} style={{ margin: "16px 0 0 24px" }}>CDC Health Data Visualization</Title>
+              <Title level={2} style={{ margin: "16px 0 0 24px" }}>Health Data </Title>
             </Col>
             <Col>
               <Text strong style={{ marginRight: "24px" }}>Total Cases: {totalCases.toLocaleString()}</Text>
@@ -215,7 +215,7 @@ function App() {
             </Row>
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>CDC Health Data Visualization ©2024 Created by Kanthi Kiran Damarla</Footer>
+        <Footer style={{ textAlign: "center" }}>Health Data Visualization ©2024 Created by Kanthi Kiran Damarla</Footer>
       </Layout>
       <Drawer
         title="Filters"
