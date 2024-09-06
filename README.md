@@ -1,6 +1,11 @@
 # Getting started with application
 
 This is a react appliction for front-end of healthdata
+
+### requirements
+
+you need to have Node X16 or above installed 
+
 ## clone application
 
 clone this application go to Health_data directory
